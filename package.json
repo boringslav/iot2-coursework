@@ -1,0 +1,24 @@
+{
+  "name": "iot-coursework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server:start": "cd server && npm start",
+    "devices:start": "cd iot-devices && npm start",
+    "client:start": "cd client && npm start",
+    "db:start": "docker compose up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boringslav/iot2-coursework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boringslav/iot2-coursework/issues"
+  },
+  "homepage": "https://github.com/boringslav/iot2-coursework#readme",
+  "dependencies": {}
+}
