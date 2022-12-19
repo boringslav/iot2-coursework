@@ -1,0 +1,27 @@
+# Connection string for prod jdbc:postgresql://localhost:5436/iot2-prod
+#Connection string for dev jdbc:postgresql://localhost:5436/iot2-dev
+version: "3.8"
+services:
+  iot2-dev:
+    image: postgres:13
+    ports:
+      - 5436:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: appointr
+    networks:
+      - iot2-dev
+  iot2-prod:
+    image: postgres:13
+    ports:
+      - 5437:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: iot2-prod
+    networks:
+      - iot2-prod
+networks:
+  iot2-dev:
+  iot2-prod:
