@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_DB: appointr
+      POSTGRES_DB: iot2-dev
     networks:
       - iot2-dev
   iot2-prod:
