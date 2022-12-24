@@ -1,20 +1,44 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import { useState, useEffect, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  Alert,
+  Container,
+  Typography,
+  Box,
+  Grid,
+  Link,
+  TextField,
+  CssBaseline,
+  Button,
+} from "@mui/material";
+import { signInRequest } from "../api";
+import UserContext from "../context/UserContext";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setError("");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [error]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    try {
+      const response = await signInRequest({ username: email, password });
+      const { accessToken } = response.data;
+      setUser(accessToken);
+      navigate("/");
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   return (
@@ -31,6 +55,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        {error && <Alert severity="error">{error}</Alert>}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
