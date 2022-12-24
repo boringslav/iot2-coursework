@@ -6,16 +6,17 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Link from "@mui/material/Link";
 import { Alert } from "@mui/material";
+import { signUpRequest } from "../api";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
-
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,10 +29,16 @@ function SignUp() {
     event.preventDefault();
 
     const requestObject = {
-      email,
+      username: email,
       password,
       repeatedPassword,
     };
+    try {
+      await signUpRequest(requestObject);
+      navigate("/sign-in");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
