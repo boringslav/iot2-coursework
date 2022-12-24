@@ -1,9 +1,10 @@
 const express = require("express");
 const CryptoJS = require("crypto-js");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 const prisma = require("../utils/db");
 
-router.route("/sign-up").post(async (req, res) => {
+router.post("/sign-up", async (req, res) => {
   const { username, password, repeatedPassword } = req.body;
 
   if (password !== repeatedPassword) {
@@ -34,4 +35,40 @@ router.route("/sign-up").post(async (req, res) => {
   }
 });
 
+router.post("/sign-in", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        username,
+      },
+    });
+
+    if (!user) {
+      throw new Error("Invalid credentials!");
+    }
+
+    const decrypted = CryptoJS.AES.decrypt(
+      user.password,
+      process.env.SECRET_KEY
+    ).toString(CryptoJS.enc.Utf8);
+
+    if (decrypted !== password) {
+      throw new Error("Invalid credentials");
+    }
+
+    const accessToken = jwt.sign(
+      {
+        id: user.id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "3d" }
+    );
+
+    res.status(200).send(JSON.stringify({ accessToken }));
+  } catch (e) {
+    res.status(401).send(JSON.stringify({ message: e.message }));
+  }
+});
 module.exports = router;
