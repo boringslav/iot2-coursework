@@ -60,6 +60,7 @@ router.post("/sign-in", async (req, res) => {
     const accessToken = jwt.sign(
       {
         id: user.id,
+        username: user.username,
         isAdmin: user.isAdmin,
       },
       process.env.JWT_SECRET_KEY,
