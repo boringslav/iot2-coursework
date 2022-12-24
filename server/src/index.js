@@ -19,6 +19,7 @@ wss.on("connection", (ws) => {
 
   ws.on("message", (message) => {
     const devicesData = JSON.parse(message);
+    console.info(devicesData);
   });
 });
 
