@@ -11,7 +11,6 @@ const server = require("http").createServer(app);
 
 const wss = new WebSocket.Server({ server });
 wss.on("connection", socketController);
-
 app.use(cors());
 app.use(express.json());
 app.use(router);

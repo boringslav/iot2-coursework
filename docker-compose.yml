@@ -1,5 +1,3 @@
-# Connection string for prod jdbc:postgresql://localhost:5436/iot2-prod
-#Connection string for dev jdbc:postgresql://localhost:5436/iot2-dev
 version: "3.8"
 services:
   iot2-dev:
