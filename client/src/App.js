@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import UserContext from "./context/UserContext";
+import { parseJWT } from "./utils/tokenUtils";
 function App() {
   const theme = createTheme();
   const [user, setUser] = useState(null);
