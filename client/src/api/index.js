@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:9000";
+export const WS_URL = "ws://localhost:9002";
 
 export const signUpRequest = async ({
   username,

@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server:start": "cd server && npm start",
-    "devices:start": "cd iot-devices && npm start",
-    "client:start": "cd client && npm start",
+    "server:start": "cd server && yarn start",
+    "server:prod": "cd server &&  yarn start:prod",
+    "devices:start": "cd iot-devices && yarn start",
+    "client:start": "cd client && yarn start",
     "db:start": "docker compose up"
   },
   "repository": {
