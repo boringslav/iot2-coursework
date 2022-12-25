@@ -9,7 +9,6 @@ module.exports = (ws) => {
   ws.on("message", (message) => {
     let jsonFileData = JSON.parse(fs.readFileSync(reportFilePath));
     const devicesData = JSON.parse(message);
-    console.log("Devices Data: ", devicesData);
     jsonFileData[Date.now()] = devicesData;
     fs.writeFileSync(reportFilePath, JSON.stringify(jsonFileData));
   });
