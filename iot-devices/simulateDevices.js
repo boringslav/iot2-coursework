@@ -1,7 +1,7 @@
 const { WebSocket } = require("ws");
 
 const connect = () => {
-  const socket = new WebSocket("ws://localhost:9000");
+  const socket = new WebSocket("ws://localhost:9001");
 
   /**
    * @description A function that simulates the IoT devices and sends the data to the server
