@@ -32,3 +32,7 @@ export const signInRequest = async ({ username, password }) => {
     }
   );
 };
+
+export const getReportRequest = async () => {
+  return await axios.get(`${BASE_URL}/report`);
+};

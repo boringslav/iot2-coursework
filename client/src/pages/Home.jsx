@@ -1,14 +1,27 @@
 import React, { useContext } from "react";
 import { Box } from "@mui/system";
 import { Container, Typography, Button, Stack } from "@mui/material";
-import { parseJWT } from "../utils/tokenUtils";
-import UserContext from "../context/UserContext";
 import NavbarLoggedIn from "../components/Navbar/NavbarLoggedIn";
 import StyledLink from "../components/Navbar/StyledLink";
+import { getReportRequest } from "../api";
+
 const Home = () => {
-  const { user } = useContext(UserContext);
-  const parsedToken = parseJWT(user);
-  console.log("Parsed Token", parsedToken);
+  const downloadReport = async () => {
+    try {
+      const reportResponse = await getReportRequest();
+      const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+        JSON.stringify(reportResponse.data)
+      )}`;
+
+      const link = document.createElement("a");
+      link.href = jsonString;
+      link.download = "data.json";
+
+      link.click();
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <>
       <NavbarLoggedIn />
@@ -49,7 +62,9 @@ const Home = () => {
             <Button variant="contained">
               <StyledLink to="/monitor">Realtime Monitoring</StyledLink>
             </Button>
-            <Button variant="outlined">download devices data</Button>
+            <Button onClick={downloadReport} variant="outlined">
+              download devices data
+            </Button>
           </Stack>
         </Container>
       </Box>
