@@ -4,6 +4,7 @@ import { Container, Typography, Button, Stack } from "@mui/material";
 import { parseJWT } from "../utils/tokenUtils";
 import UserContext from "../context/UserContext";
 import NavbarLoggedIn from "../components/Navbar/NavbarLoggedIn";
+import StyledLink from "../components/Navbar/StyledLink";
 const Home = () => {
   const { user } = useContext(UserContext);
   const parsedToken = parseJWT(user);
@@ -45,7 +46,9 @@ const Home = () => {
             spacing={2}
             justifyContent="center"
           >
-            <Button variant="contained">Realtime Monitoring</Button>
+            <Button variant="contained">
+              <StyledLink to="/monitor">Realtime Monitoring</StyledLink>
+            </Button>
             <Button variant="outlined">download devices data</Button>
           </Stack>
         </Container>

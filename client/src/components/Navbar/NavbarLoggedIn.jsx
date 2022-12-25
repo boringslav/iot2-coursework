@@ -17,7 +17,7 @@ const NavbarLoggedIn = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             IoT Coursework
           </Typography>
-          <StyledLink to="/#">
+          <StyledLink to="/monitor">
             <Button color="inherit">Monitor</Button>
           </StyledLink>
           <Button color="warning" variant="text" onClick={logout}>

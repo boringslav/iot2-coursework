@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
+import Monitor from "./pages/Monitor";
 import UserContext from "./context/UserContext";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               index
               element={user ? <Home /> : <Navigate to="sign-up" />}
             />
+            <Route path="/monitor" element={user ? <Monitor /> : <SignIn />} />
             <Route path="sign-in" element={user ? <Home /> : <SignIn />} />
             <Route path="sign-up" element={user ? <Home /> : <SignUp />} />
           </Routes>
