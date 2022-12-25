@@ -20,7 +20,6 @@ const NavbarLoggedIn = () => {
           <StyledLink to="/#">
             <Button color="inherit">Monitor</Button>
           </StyledLink>
-
           <Button color="warning" variant="text" onClick={logout}>
             Logout
           </Button>
