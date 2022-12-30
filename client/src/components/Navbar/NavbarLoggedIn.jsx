@@ -17,6 +17,9 @@ const NavbarLoggedIn = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             IoT Coursework
           </Typography>
+          <StyledLink to="/">
+            <Button color="inherit">Home</Button>
+          </StyledLink>
           <StyledLink to="/monitor">
             <Button color="inherit">Monitor</Button>
           </StyledLink>
